@@ -25,6 +25,7 @@ class Login extends BaseController
 
         if ($user and password_verify($password, $user['password'])) {
             session()->set(['email' => $user['email']]);
+            session()->set(['id' => $user['id']]);
             return redirect()->to('/blogs');
         } else {
             session()->setFlashdata('error', 'Invalid email or password');
