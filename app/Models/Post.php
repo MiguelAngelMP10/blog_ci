@@ -50,7 +50,7 @@ class Post extends Model
 
     public function getBlogWithUsers(): array
     {
-        return $this->select('posts.*, users.email')
+        return $this->select("posts.*, users.email, date_format(posts.created_at, '%d/%m/%Y %h:%i:%s %p') AS created_at_formatted")
             ->join('users', 'users.id = posts.user_id')
             ->orderBy('id', 'DESC')
             ->findAll();

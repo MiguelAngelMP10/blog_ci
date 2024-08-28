@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Title: <?= $post['title'] ?></h5>
                         <strong class="card-title">Owner: <?= $post['email'] ?></strong>
-                        <p class="card-text">Content: <?= $post['content'] ?></p>
+                        <a href="posts/show/<?= $post['id'] ?>"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
             </div>

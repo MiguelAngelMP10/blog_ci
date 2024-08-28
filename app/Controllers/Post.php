@@ -50,6 +50,13 @@ class Post extends BaseController
         }
     }
 
+    public function show(int $id): string
+    {
+        $model = new \App\Models\Post();
+        $data['post'] = $model->find($id);
+        return view('posts/show', $data);
+    }
+
     public function edit($id): string
     {
         $model = new \App\Models\Post();
