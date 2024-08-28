@@ -17,20 +17,20 @@
     </div>
 <?php endif; ?>
 
-    <form action="/blogs/update" method="post">
+    <form action="/posts/update" method="post">
         <?= csrf_field() ?>
 
-        <input type="hidden" class="form-control" name="id"  value="<?= $blog['id'] ?>">
+        <input type="hidden" class="form-control" name="id"  value="<?= $post['id'] ?>">
 
 
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" name="title" id="title" value="<?= $blog['title'] ?>">
+            <input type="text" class="form-control" name="title" id="title" value="<?= $post['title'] ?>">
         </div>
 
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
-            <textarea name="content" id="content"><?= $blog['content'] ?></textarea>
+            <textarea name="content" id="content"><?= $post['content'] ?></textarea>
         </div>
 
 

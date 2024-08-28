@@ -25,7 +25,7 @@ cd blog_ci
 composer install 
 ```
 
-4. Base de Datos: Configura la conexión a tu base de datos en el archivo *app/Config/Database.php*.
+4. Database: Configure the connection to your database in the *app/Config/Database.php* file.
 
 5. Run Migrations:
 
@@ -33,8 +33,12 @@ composer install
  php spark migrate
  ```
 
-6. **Serve the Application:**
+6. Seed data examples
+ ```bash
+   php spark db:seed DatabaseSeeder
+ ```
 
-    ```bash
-    php spark serve
-    ```
+7. *Serve the Application:*
+```bash
+  php spark serve
+```

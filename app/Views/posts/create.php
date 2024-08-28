@@ -17,7 +17,7 @@
     </div>
 <?php endif; ?>
 
-    <form action="/blogs/store" method="post">
+    <form action="/posts/store" method="post">
         <?= csrf_field() ?>
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>

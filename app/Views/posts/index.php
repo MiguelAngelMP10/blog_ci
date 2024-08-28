@@ -9,7 +9,7 @@
         <?= session()->getFlashdata('success') ?>
     </div>
 <?php endif; ?>
-    <a href="blogs/create" class="btn btn-primary" role="button">Create blog</a>
+    <a href="posts/create" class="btn btn-primary" role="button">Create blog</a>
 
     <table class="table">
         <thead>
@@ -22,15 +22,15 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($blogs as $key => $blog): ?>
+        <?php foreach ($posts as $key => $post): ?>
             <tr>
                 <th scope="row"><?= $key + 1 ?></th>
-                <td><?= $blog['email'] ?></td>
-                <td><?= $blog['title'] ?></td>
-                <td><?= $blog['content'] ?></td>
+                <td><?= $post['email'] ?></td>
+                <td><?= $post['title'] ?></td>
+                <td><?= $post['content'] ?></td>
                 <td>
-                    <a href="blogs/edit/<?= $blog['id'] ?>" class="btn btn-primary" role="button">Edit</a>
-                    <a href="blogs/delete/<?= $blog['id'] ?>" class="btn btn-danger"
+                    <a href="posts/edit/<?= $post['id'] ?>" class="btn btn-primary" role="button">Edit</a>
+                    <a href="posts/delete/<?= $post['id'] ?>" class="btn btn-danger"
                        onclick="return confirm('Are you sure?')" role="button">Delete
                     </a>
                 </td>

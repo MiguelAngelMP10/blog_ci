@@ -72,7 +72,7 @@ class Post extends BaseController
 
         $model->update($id, $data);
         session()->setFlashdata('success', 'Update success');
-        return redirect()->to('/post');
+        return redirect()->to('/posts');
     }
 
     public function delete($id): RedirectResponse
