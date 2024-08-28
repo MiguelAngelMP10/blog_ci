@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Blog extends Model
+class Post extends Model
 {
-    protected $table = 'blogs';
+    protected $table = 'posts';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
@@ -50,8 +50,8 @@ class Blog extends Model
 
     public function getBlogWithUsers(): array
     {
-        return $this->select('blogs.*, users.email')
-            ->join('users', 'users.id = blogs.user_id')
+        return $this->select('posts.*, users.email')
+            ->join('users', 'users.id = posts.user_id')
             ->orderBy('id', 'DESC')
             ->findAll();
     }

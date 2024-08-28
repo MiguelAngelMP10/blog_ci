@@ -6,7 +6,7 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        $model = new \App\Models\Blog();
+        $model = new \App\Models\Post();
         $data['blogs'] =  $model->getBlogWithUsers();
         return view('home/index', $data);
     }

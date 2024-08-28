@@ -7,18 +7,18 @@ use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\ResponseInterface;
 use ReflectionException;
 
-class Blog extends BaseController
+class Post extends BaseController
 {
     public function index(): string
     {
-        $model = new \App\Models\Blog();
-        $data['blogs'] = $model->getBlogWithUsers();
-        return view('blog/index', $data);
+        $model = new \App\Models\Post();
+        $data['posts'] = $model->getBlogWithUsers();
+        return view('posts/index', $data);
     }
 
     public function create(): string
     {
-        return view('blog/create');
+        return view('posts/create');
     }
 
     /**
@@ -26,7 +26,7 @@ class Blog extends BaseController
     public function store(): RedirectResponse
     {
         try {
-            $model = new \App\Models\Blog();
+            $model = new \App\Models\Post();
             $data = [
                 'user_id' => session()->get('id'),
                 'title' => $this->request->getPost('title'),
@@ -36,7 +36,7 @@ class Blog extends BaseController
 
             if ($model->save($data)) {
                 session()->setFlashdata('success', 'Create success');
-                return redirect()->to('/blogs');
+                return redirect()->to('/posts');
             } else {
                 $errors = $model->errors();
                 session()->setFlashdata('errors', $errors);
@@ -46,15 +46,15 @@ class Blog extends BaseController
 
         } catch (\Exception $exception) {
             session()->setFlashdata('error', $exception->getMessage());
-            return redirect()->to('/blogs');
+            return redirect()->to('/posts');
         }
     }
 
     public function edit($id): string
     {
-        $model = new \App\Models\Blog();
-        $data['blog'] = $model->find($id);
-        return view('blog/edit', $data);
+        $model = new \App\Models\Post();
+        $data['post'] = $model->find($id);
+        return view('posts/edit', $data);
     }
 
     /**
@@ -62,7 +62,7 @@ class Blog extends BaseController
      */
     public function update(): RedirectResponse
     {
-        $model = new \App\Models\Blog();
+        $model = new \App\Models\Post();
         $id = $this->request->getPost('id');
         $data = [
             'users_id' => session()->get('id'),
@@ -72,14 +72,14 @@ class Blog extends BaseController
 
         $model->update($id, $data);
         session()->setFlashdata('success', 'Update success');
-        return redirect()->to('/blogs');
+        return redirect()->to('/post');
     }
 
     public function delete($id): RedirectResponse
     {
-        $model = new \App\Models\Blog();
+        $model = new \App\Models\Post();
         $model->delete($id);
         session()->setFlashdata('success', 'Delete success');
-        return redirect()->to('/blogs');
+        return redirect()->to('/posts');
     }
 }

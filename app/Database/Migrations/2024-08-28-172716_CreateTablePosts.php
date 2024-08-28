@@ -4,38 +4,40 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateTableBlog extends Migration
+class CreateTablePosts extends Migration
 {
     public function up()
     {
         $this->forge->addField(array(
-            'id' => array(
+            'id' => [
                 'type' => 'INT',
                 'unsigned' => true,
                 'auto_increment' => true,
-            ),
+            ],
             'user_id' => [
                 'type' => 'INT',
                 'unsigned' => true,
                 'constraint' => 11,
             ],
-            'title' => array(
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
-            ),
-            'content' => array(
+            ],
+            'content' => [
                 'type' => 'TEXT',
-            ),
+            ],
+            'created_at' => ['type' => 'DATETIME', 'null' => true],
+            'updated_at' => ['type' => 'DATETIME', 'null' => true],
 
         ));
         $this->forge->addForeignKey('user_id', 'users', 'id');
         $this->forge->addKey('id', true);
-        $this->forge->createTable('blogs');
+        $this->forge->createTable('posts');
     }
 
     public function down(): void
     {
-        $this->forge->dropForeignKey('user_id', 'blogs');
-        $this->forge->dropTable('blogs');
+        $this->forge->dropForeignKey('user_id', 'posts');
+        $this->forge->dropTable('posts');
     }
 }
