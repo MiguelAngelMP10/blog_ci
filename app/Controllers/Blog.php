@@ -12,29 +12,42 @@ class Blog extends BaseController
     public function index(): string
     {
         $model = new \App\Models\Blog();
-        $data['blogs'] = $model->orderBy('id', 'DESC')->findAll();
+        $data['blogs'] = $model->getBlogWithUsers();
         return view('blog/index', $data);
     }
 
     public function create(): string
     {
-        return view('product/create');
+        return view('blog/create');
     }
 
     /**
-     * @throws ReflectionException
      */
     public function store(): RedirectResponse
     {
-        $model = new \App\Models\Blog();
-        $data = [
-            'users_id' => session()->get('id'),
-            'title' => $this->request->getPost('title'),
-            'content' => $this->request->getPost('content'),
-        ];
-        $model->save($data);
-        session()->setFlashdata('success', 'Create success');
-        return redirect()->to('/blogs');
+        try {
+            $model = new \App\Models\Blog();
+            $data = [
+                'user_id' => session()->get('id'),
+                'title' => $this->request->getPost('title'),
+                'content' => $this->request->getPost('content'),
+            ];
+
+
+            if ($model->save($data)) {
+                session()->setFlashdata('success', 'Create success');
+                return redirect()->to('/blogs');
+            } else {
+                $errors = $model->errors();
+                session()->setFlashdata('errors', $errors);
+                return redirect()->back();
+            }
+
+
+        } catch (\Exception $exception) {
+            session()->setFlashdata('error', $exception->getMessage());
+            return redirect()->to('/blogs');
+        }
     }
 
     public function edit($id): string

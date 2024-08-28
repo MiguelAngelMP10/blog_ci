@@ -12,7 +12,7 @@ class Blog extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['users_id', 'title', 'content'];
+    protected $allowedFields = ['user_id', 'title', 'content'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -28,7 +28,11 @@ class Blog extends Model
     protected $deletedField = 'deleted_at';
 
     // Validation
-    protected $validationRules = [];
+    protected $validationRules = [
+        'user_id' => 'required',
+        'title' => 'required',
+        'content' => 'required',
+    ];
     protected $validationMessages = [];
     protected $skipValidation = false;
     protected $cleanValidationRules = true;
@@ -43,4 +47,12 @@ class Blog extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
+
+    public function getBlogWithUsers(): array
+    {
+        return $this->select('blogs.*, users.email')
+            ->join('users', 'users.id = blogs.user_id')
+            ->orderBy('id', 'DESC')
+            ->findAll();
+    }
 }

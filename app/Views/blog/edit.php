@@ -8,8 +8,44 @@
     </div>
 <?php endif; ?>
 
-<?= 'Edit' ?>
 
+<?php if (session()->getFlashdata('errors')): ?>
+    <div class="alert alert-danger">
+        <?php foreach (session()->getFlashdata('errors') as $error): ?>
+            <p><?php echo esc($error); ?></p>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+    <form action="/blogs/update" method="post">
+        <?= csrf_field() ?>
+
+        <input type="hidden" class="form-control" name="id"  value="<?= $blog['id'] ?>">
+
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" id="title" value="<?= $blog['title'] ?>">
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea name="content" id="content"><?= $blog['content'] ?></textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+
+    <script src="https://cdn.tiny.cloud/1/g4yt69x5u6xk2xy8arzutzqu1pj8vytojpeb8nxxpllczh5i/tinymce/7/tinymce.min.js"
+            referrerpolicy="origin"></script>
+
+
+    <script>
+        tinymce.init({
+            selector: '#content',
+        });
+    </script>
 
 
 <?= $this->endSection() ?>
