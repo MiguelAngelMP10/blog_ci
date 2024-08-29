@@ -26,12 +26,22 @@
             <a class="navbar-brand" href="/">Home</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/posts">Blogs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
+                    <?php if (session()->get('email')): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/posts">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                    <?php endif; ?>
+                    <?php if (!session()->get('email')): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

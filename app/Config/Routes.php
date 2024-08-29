@@ -17,3 +17,5 @@ $routes->get('/posts/show/(:num)', 'Post::show/$1');
 $routes->get('/posts/edit/(:num)', 'Post::edit/$1', ['filter' => 'auth']);
 $routes->post('/posts/update', 'Post::update', ['filter' => 'auth']);
 $routes->get('/posts/delete/(:num)', 'Post::delete/$1', ['filter' => 'auth']);
+
+$routes->get('/show/(:num)', 'Post::show/$1');
