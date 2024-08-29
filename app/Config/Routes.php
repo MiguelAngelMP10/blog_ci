@@ -22,9 +22,9 @@ $routes->get('/show/(:num)', 'Post::show/$1');
 
 
 $routes->get('users', 'User::index');
-$routes->get('users/create', 'User::create');
-$routes->post('users/store', 'User::store');
-$routes->get('users/edit/(:num)', 'User::edit/$1');
-$routes->post('users/update/(:num)', 'User::update/$1');
-$routes->get('users/delete/(:num)', 'User::delete/$1');
-$routes->get('users/show/(:num)', 'User::show/$1');
+$routes->get('/users/create', 'User::create');
+$routes->post('/users/store', 'User::store');
+$routes->get('/users/edit/(:num)', 'User::edit/$1');
+$routes->post('/users/update/(:num)', 'User::update/$1');
+$routes->get('/users/delete/(:num)', 'User::delete/$1');
+$routes->get('/users/show/(:num)', 'User::show/$1');

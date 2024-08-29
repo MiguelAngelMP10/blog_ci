@@ -27,4 +27,31 @@ class User extends BaseController
         session()->setFlashdata('success', 'Delete success');
         return redirect()->to('/users');
     }
+
+    public function store(): RedirectResponse
+    {
+        try {
+            $model = new \App\Models\User();
+            $data = [
+                'email' => $this->request->getPost('email'),
+                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                'name' => $this->request->getPost('name'),
+                'surnames' => $this->request->getPost('surnames'),
+                'gender' => $this->request->getPost('gender'),
+                'date_of_birth' => $this->request->getPost('date_of_birth'),
+            ];
+
+            if ($model->save($data)) {
+                session()->setFlashdata('success', 'Create success');
+                return redirect()->to('/users');
+            } else {
+                $errors = $model->errors();
+                session()->setFlashdata('errors', $errors);
+                return redirect()->back();
+            }
+        } catch (\Exception $exception) {
+            session()->setFlashdata('error', $exception->getMessage());
+            return redirect()->to('/users');
+        }
+    }
 }

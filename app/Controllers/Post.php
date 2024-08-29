@@ -43,8 +43,6 @@ class Post extends BaseController
                 session()->setFlashdata('errors', $errors);
                 return redirect()->back();
             }
-
-
         } catch (\Exception $exception) {
             session()->setFlashdata('error', $exception->getMessage());
             return redirect()->to('/posts');

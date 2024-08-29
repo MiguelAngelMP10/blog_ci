@@ -83,10 +83,10 @@ class User extends Model
      * @var array
      */
     protected $validationRules = [
-        'email' => ['required|max_length[254]|valid_email'],
-        'password' => 'required|min_length[8]|max_length[255]',
-        'name' => 'required|string|max_length[100]',
-        'surnames' => 'required|string|max_length[100]',
+        'email' => ['required'],
+        'password' => 'required|min_length[8]',
+        'name' => 'required|string',
+        'surnames' => 'required|string',
         'gender' => 'required|in_list[male,female,other]',
         'date_of_birth' => 'required|valid_date',
     ];
