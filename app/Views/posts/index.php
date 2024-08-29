@@ -13,7 +13,7 @@
 <?php endif; ?>
     <a href="posts/create" class="btn btn-sm btn-outline-info" role="button"><i class="fa-solid fa-plus"></i> Create post</a>
 
-    <table class="table" id="postsTable">
+    <table class="table hover" id="postsTable">
         <thead>
         <tr>
             <th scope="col">#</th>
