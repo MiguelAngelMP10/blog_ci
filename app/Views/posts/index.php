@@ -27,7 +27,7 @@
         <?php foreach ($posts as $key => $post): ?>
             <tr>
                 <th scope="row"><?= $key + 1 ?></th>
-                <td><?= $post['email'] ?></td>
+                <td><?= $post['name'] ?></td>
                 <td><?= $post['title'] ?></td>
                 <td><?= $post['created_at_formatted'] ?></td>
                 <td class="text-center">

@@ -17,8 +17,8 @@
     </div>
 <?php endif; ?>
 
-    <h1><?= $post['title'] ?></h1>
+    <h1><?= $user['title'] ?></h1>
 
-<?= $post['content'] ?>
+<?= $user['content'] ?>
 
 <?= $this->endSection() ?>
