@@ -12,7 +12,7 @@ class Post extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['user_id', 'title', 'content'];
+    protected $allowedFields = ['user_id', 'title', 'content', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -50,9 +50,9 @@ class Post extends Model
 
     public function getBlogWithUsers(): array
     {
-        return $this->select("posts.*, users.email, date_format(posts.created_at, '%d/%m/%Y %h:%i:%s %p') AS created_at_formatted")
+        return $this->select("posts.*, users.email, users.name, date_format(posts.created_at, '%d/%m/%Y %h:%i:%s %p') AS created_at_formatted")
             ->join('users', 'users.id = posts.user_id')
-            ->orderBy('id', 'DESC')
+            ->orderBy('posts.id', 'DESC')
             ->findAll();
     }
 }

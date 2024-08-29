@@ -31,6 +31,7 @@ class Post extends BaseController
                 'user_id' => session()->get('id'),
                 'title' => $this->request->getPost('title'),
                 'content' => $this->request->getPost('content'),
+                'created_at' => date('Y-m-d h:i:s')
             ];
 
 
@@ -75,6 +76,7 @@ class Post extends BaseController
             'users_id' => session()->get('id'),
             'title' => $this->request->getPost('title'),
             'content' => $this->request->getPost('content'),
+            'updated_at' => date('Y-m-d h:i:s')
         ];
 
         $model->update($id, $data);

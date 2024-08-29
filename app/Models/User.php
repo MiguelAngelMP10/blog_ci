@@ -36,7 +36,7 @@ class User extends Model
     /**
      * @var string[]
      */
-    protected $allowedFields = ['email', 'password'];
+    protected $allowedFields = ['email', 'password', 'name', 'surnames', 'gender', 'date_of_birth'];
 
     /**
      * @var bool
@@ -85,6 +85,10 @@ class User extends Model
     protected $validationRules = [
         'email' => ['required|max_length[254]|valid_email'],
         'password' => 'required|min_length[8]|max_length[255]',
+        'name' => 'required|string|max_length[100]',
+        'surnames' => 'required|string|max_length[100]',
+        'gender' => 'required|in_list[male,female,other]',
+        'date_of_birth' => 'required|valid_date',
     ];
     /**
      * @var array
